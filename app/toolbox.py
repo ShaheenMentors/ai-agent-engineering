@@ -1,19 +1,28 @@
-app_name = "Developer Toolbox"
-version = "1.0"
+APP_NAME = "Developer Toolbox"
+VERSION = "1.0"
 
-print(app_name)
-print(version)
-
-def show_banner():
+def show_banner(title):
     print("=" * 40)
-    print("Developer Toolbox CLI")
+    print(title)
     print("=" * 40)
 
-
-show_banner()
 
 def greet(name):
     print(f"Welcome {name}!")
-name=input("Enter your name: ")
-greet(name)
+
+def main():
+    show_banner(APP_NAME + " CLI")
+    print()
+    name = input("Enter your name: ")
+    print()
+    greet(name)
+    print()
+    print(f"Version: {VERSION}")
+
+if __name__ == "__main__":
+    main()
+
+	
+
+
 
