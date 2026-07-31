@@ -1,18 +1,17 @@
 class AIAgent:
 
-    def __init__(self, name, model, version):
+    def __init__(self, name, model, version, status):
         self.name = name
         self.model = model
         self.version = version
+        self.status = status
 
     def introduce(self):
         print(f"Hello! I am {self.name}, running on {self.model} (Version {self.version}).")
 
     def show_details(self):
         print("=" * 30)
-        print(f"Name   : {self.name}")
-        print(f"Model  : {self.model}")
-        print(f"Version: {self.version}")
+        print(self)
 
     def update_model(self, new_model):
         self.model = new_model
@@ -24,18 +23,21 @@ class AIAgent:
         return (
             f"{self.name} | "
             f"Model: {self.model} | "
-            f"Version: {self.version}"
+            f"Version: {self.version} |"
+            f"Status: {self.status}"
         )
+    def activate(self):
+        if self.status == "Inactive":
+            self.status = "Active"
+        print(self)
+    
+    def deactivate(self):
+        if self.status == "Active":
+            self.status = "Inactive"
+        print(self)
 
-agent = AIAgent("ResearchBot","gpt-5.5",1.0)
-coding_agent = AIAgent("CodeBot", "gpt-5.5", 1.0)
-tutor_agent = AIAgent("TutorBot", "gpt-5.5", 1.0)
-agent.introduce()
-agent.show_details()
-coding_agent.introduce()
-coding_agent.show_details()
-tutor_agent.introduce()
-tutor_agent.show_details()
+agent = AIAgent("ResearchBot","gpt-5.5",1.0, "Active")
 agent.update_model("gpt-6.0")
 agent.update_version(2.0)
-print(agent)
+agent.deactivate()
+agent.activate()
