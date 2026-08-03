@@ -1,17 +1,12 @@
 class AIAgent:
 
-    def __init__(self, name, model, version, status):
+    def __init__(self, name, model, version):
         self.name = name
         self.model = model
         self.version = version
-        self.status = status
 
     def introduce(self):
         print(f"Hello! I am {self.name}, running on {self.model} (Version {self.version}).")
-
-    def show_details(self):
-        print("=" * 30)
-        print(self)
 
     def update_model(self, new_model):
         self.model = new_model
@@ -19,25 +14,27 @@ class AIAgent:
     def update_version(self, version):
         self.version = version
 
+class ResearchAgent(AIAgent):
+        def __init__(self, name, model, version, specialty):
+            super().__init__(name, model, version)
+            self.specialty = specialty
+    def introduce(self):
+        print(self)
     def __str__(self):
         return (
-            f"{self.name} | "
-            f"Model: {self.model} | "
-            f"Version: {self.version} |"
-            f"Status: {self.status}"
+            f"Hello! I am {self.name}.\n"
+            f"Specialty: {self.specialty}\n"
+            f"Running on {self.model}"
         )
-    def activate(self):
-        if self.status == "Inactive":
-            self.status = "Active"
-        print(self)
-    
-    def deactivate(self):
-        if self.status == "Active":
-            self.status = "Inactive"
-        print(self)
 
-agent = AIAgent("ResearchBot","gpt-5.5",1.0, "Active")
+agent = AIAgent("ResearchBot","gpt-5.5",1.0)
 agent.update_model("gpt-6.0")
 agent.update_version(2.0)
-agent.deactivate()
-agent.activate()
+agent.introduce()
+researchagent=ResearchAgent(
+    "ResearchBot",
+    "gpt-6",
+    1.0,
+    "Scientific Research"
+    )
+researchagent.introduce()
